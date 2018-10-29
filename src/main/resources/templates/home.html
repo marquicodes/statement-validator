@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Statement Validator</title>
+    <!-- CSS Dependencies -->
+    <link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous">
+    <link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+      integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+      crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/shards.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+
+  <body>
+    <header class="header clearfix">
+      <nav class="navbar navbar-expand-md navbar-light" role="navigation" tabindex="-1">
+        <div class="container">
+          <span>
+            <img src="/images/logo.png" height="50" class="align-bottom mr-1" alt="Rabobank logo">
+          </span>
+          <span class="text-right">Customer Statement Processor</span>
+        </div>
+      </nav>
+    </header>
+    
+    <main role="main">
+      <div class="container full-height">
+        <form th:action="@{/}" class="my-5" method="post" enctype="multipart/form-data">
+          <h3 class="form-heading">Upload statement records</h3>
+          <div th:if="${warn}" class="custom-alert alert-warning col-s10 col-l6">
+            <p th:text="${warn}"></p>
+          </div>
+          <div th:if="${error}" class="custom-alert alert-danger col-s10 col-l6">
+            <p th:text="${error}"></p>
+          </div>
+          <div class="form-row">
+            <div class="custom-file col-s10 col-l6">
+              <input type="file" id="file" class="custom-file-input" name="file" 
+                accept=".csv, .xml, text/csv, text/xml" required="required" />
+              <label class="custom-file-label" for="file"><i class="fas fa-paperclip"></i> Select a file to upload (.csv or .xml)</label>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="mx-auto">
+              <button type="submit" class="btn btn-md btn-primary btn-pill btn-block">Validate</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+    
+    <footer class="footer-basic">
+      <span>&copy; 2018</span>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- JavaScript Dependencies: jQuery, Popper.js, Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+    <script src="/js/shards.min.js" type="text/javascript" charset="utf8"></script>
+    <script src="/js/custom.js" type="text/javascript" charset="utf8"></script>
+  </body>
+</html>

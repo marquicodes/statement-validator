@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Statement Validator</title>
+    <!-- CSS Dependencies -->
+    <link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous">
+    <link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+      integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+      crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="/css/shards.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+
+  <body>
+    <header class="header clearfix">
+      <nav class="navbar navbar-expand-md navbar-light" role="navigation" tabindex="-1">
+        <div class="container">
+          <span>
+            <img src="/images/logo.png" height="50" class="align-bottom mr-1" alt="Rabobank logo">
+          </span>
+          <span class="text-right">Customer Statement Processor</span>
+        </div>
+      </nav>
+    </header>
+    
+    <main role="main">
+      <div class="container full-height">
+        <div class="frame">
+          <h3 class="frame-heading">Customer statement validation results</h3>
+          <div th:if="${#lists.isEmpty(failedRecords)}" class="custom-alert alert-success my-5 col-s10 col-l6">
+            <p>Congratulations! All statements are valid.</p>
+          </div>
+          <div th:if="${not #lists.isEmpty(failedRecords)}" class="col-s10 col-l6">
+            
+            <h5 class="validation">Following records failed validation.</h5>
+            <table id="validation-results" class="table table-striped table-hover">
+              <thead class="thead-inverse">
+                <tr>
+                  <th>Reference</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="failedRecord : ${failedRecords}">
+                  <td th:text="${failedRecord.reference}"></td>
+                  <td th:text="${failedRecord.description}"></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Reference</th>
+                  <th>Description</th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <div class="row">
+            <div class="mx-auto">
+              <a class="btn btn-md btn-primary btn-pill btn-block" href="/">New Validation</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <footer class="footer-basic">
+      <span>&copy; 2018</span>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- JavaScript Dependencies: jQuery, Popper.js, Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+    <script src="/js/shards.min.js" type="text/javascript" charset="utf8"></script>
+    <script src="/js/custom.js" type="text/javascript" charset="utf8"></script>
+  </body>
+</html>
